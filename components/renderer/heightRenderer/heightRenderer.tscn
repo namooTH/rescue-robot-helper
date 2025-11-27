@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3 uid="uid://dym3vf8leeigf"]
+
+[ext_resource type="Script" uid="uid://dgh3sa82rp4sj" path="res://components/renderer/heightRenderer/height_renderer.gd" id="1_pg5tw"]
+[ext_resource type="Shader" uid="uid://dnxw3byrt13tf" path="res://pixelate.gdshader" id="2_jo8pj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wt74"]
+shader = ExtResource("2_jo8pj")
+shader_parameter/amount = 4
+
+[sub_resource type="Gradient" id="Gradient_jo8pj"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.18359044, 0.18359044, 0.18359044, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_srtbc"]
+gradient = SubResource("Gradient_jo8pj")
+fill_from = Vector2(1, 0.5)
+fill_to = Vector2(0, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_srtbc"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.18359044, 0.18359044, 0.18359044, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_swkdy"]
+gradient = SubResource("Gradient_srtbc")
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_pru3s"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.18359044, 0.18359044, 0.18359044, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pn4hg"]
+gradient = SubResource("Gradient_pru3s")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_pg5tw"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.18359044, 0.18359044, 0.18359044, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jo8pj"]
+gradient = SubResource("Gradient_pg5tw")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[node name="HeightRenderer" type="Control" unique_id=1004369028]
+layout_mode = 3
+anchor_right = 0.43400002
+anchor_bottom = 0.772
+offset_right = 0.031982422
+offset_bottom = -0.25601196
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pg5tw")
+
+[node name="slopeRight" type="TextureRect" parent="." unique_id=656433687]
+material = SubResource("ShaderMaterial_6wt74")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_srtbc")
+expand_mode = 1
+
+[node name="slopeLeft" type="TextureRect" parent="." unique_id=679666240]
+material = SubResource("ShaderMaterial_6wt74")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_swkdy")
+expand_mode = 1
+
+[node name="slopeDown" type="TextureRect" parent="." unique_id=179724847]
+material = SubResource("ShaderMaterial_6wt74")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_pn4hg")
+expand_mode = 1
+
+[node name="slopeUp" type="TextureRect" parent="." unique_id=627383792]
+material = SubResource("ShaderMaterial_6wt74")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_jo8pj")
+expand_mode = 1
+
+[node name="above" type="ColorRect" parent="." unique_id=554295714]
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18431373, 0.18431373, 0.18431373, 1)

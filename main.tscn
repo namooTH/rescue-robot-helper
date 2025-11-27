@@ -1,0 +1,247 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwo04no3sfmjk"]
+
+[ext_resource type="Script" uid="uid://4tsjceri85kh" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="Shader" uid="uid://kokvsds3rh1l" path="res://background.gdshader" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dj2n6t2yrhjsr" path="res://components/tilesContainer/tileContainer.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://b3ps8bf0kyasv" path="res://pathfind.gd" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://d04c1doqyik7e" path="res://components/inspector/inspector.tscn" id="2_0xm2m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+shader = ExtResource("1_h2yge")
+shader_parameter/stripes = 1.95
+shader_parameter/stripe_thickness = 1.33
+shader_parameter/stripe_color = Color(0.056291588, 0.056291603, 0.056291595, 1)
+shader_parameter/background_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(0.2, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(0, 0, 0, 0)
+draw_center = false
+border_width_top = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
+bg_color = Color(0, 0, 0, 0.45882353)
+skew = Vector2(0.2, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Main" type="Control" unique_id=135828504]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7mycd")
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1896940175]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+access = 2
+filters = PackedStringArray("*.res")
+use_native_dialog = true
+
+[node name="pathfind" type="Node" parent="." unique_id=1561748784]
+script = ExtResource("1_lquwl")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=689784538]
+top_level = true
+default_color = Color(1, 0, 0, 1)
+
+[node name="Background" type="ColorRect" parent="." unique_id=1475437541]
+material = SubResource("ShaderMaterial_1bvp3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=401224822]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HFlowContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1521876584]
+layout_mode = 2
+
+[node name="MenuBar" type="Panel" parent="MarginContainer/HFlowContainer" unique_id=593689905]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HFlowContainer/MenuBar" unique_id=1091941255]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HFlowContainer/MenuBar/MarginContainer" unique_id=286539775]
+layout_mode = 2
+alignment = 1
+
+[node name="Status" type="HBoxContainer" parent="MarginContainer/HFlowContainer/MenuBar/MarginContainer/HBoxContainer" unique_id=791256193]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="FileName" type="Label" parent="MarginContainer/HFlowContainer/MenuBar/MarginContainer/HBoxContainer/Status" unique_id=668167955]
+layout_mode = 2
+
+[node name="NotSaved" type="Label" parent="MarginContainer/HFlowContainer/MenuBar/MarginContainer/HBoxContainer/Status" unique_id=885636134]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_lquwl")
+text = "Not Saved"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 0
+justification_flags = 0
+
+[node name="TabBar" type="TabBar" parent="MarginContainer/HFlowContainer/MenuBar/MarginContainer/HBoxContainer" unique_id=1326436825]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/tab_separation = 16
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_7mycd")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_5vw27")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_272bh")
+current_tab = 0
+tab_alignment = 1
+tab_count = 2
+tab_0/title = "Editor"
+tab_1/title = "Code"
+
+[node name="Panel" type="Panel" parent="MarginContainer/HFlowContainer/MenuBar/MarginContainer/HBoxContainer/TabBar" unique_id=1467140645]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kek77")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HFlowContainer/MenuBar/MarginContainer/HBoxContainer" unique_id=2059240984]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="MenuButton" type="MenuButton" parent="MarginContainer/HFlowContainer/MenuBar/MarginContainer/HBoxContainer/HBoxContainer" unique_id=856581210]
+layout_mode = 2
+text = "File"
+item_count = 3
+popup/item_0/text = "New"
+popup/item_0/id = 0
+popup/item_1/text = "Load"
+popup/item_1/id = 1
+popup/item_2/text = "Save"
+popup/item_2/id = 2
+
+[node name="Editor" type="Panel" parent="MarginContainer/HFlowContainer" unique_id=172245420]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HFlowContainer/Editor" unique_id=1529499306]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HFlowContainer/Editor/MarginContainer" unique_id=963429952]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Inspector" parent="MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer" unique_id=2027340921 instance=ExtResource("2_0xm2m")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer" unique_id=1111481677]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="TileContainer" parent="MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer/AspectRatioContainer" unique_id=1271220298 instance=ExtResource("1_ig7tw")]
+layout_mode = 2
+tile_size = Vector2(8, 4)
+
+[node name="Code" type="Panel" parent="MarginContainer/HFlowContainer" unique_id=750100578]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HFlowContainer/Code" unique_id=1850930571]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Step" type="Panel" parent="MarginContainer/HFlowContainer/Code/HSplitContainer" unique_id=1827254037]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="MarginContainer/HFlowContainer/Code/HSplitContainer" unique_id=31708954]
+layout_mode = 2
+editable = false
+minimap_draw = true
+
+[node name="Button" type="Button" parent="." unique_id=1047641389]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 65.0
+offset_right = 923.0
+offset_bottom = 159.0
+text = "pathfind"
+
+[node name="Button2" type="Button" parent="." unique_id=536768425]
+layout_mode = 0
+offset_left = 939.0
+offset_top = 66.0
+offset_right = 1091.0
+offset_bottom = 160.0
+text = "update"
+
+[connection signal="pressed" from="Button" to="pathfind" method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="pathfind" method="_on_button_2_pressed"]

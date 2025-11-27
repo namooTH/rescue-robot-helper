@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddcvf0uxv7yg3"]
+
+[ext_resource type="Script" uid="uid://b8yfopvlbwkem" path="res://system/selectionManager/selection_manager.gd" id="1_odggw"]
+
+[node name="SelectionManager" type="Node" unique_id=2081100371]
+script = ExtResource("1_odggw")

@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1ifm0533k3s6"]
+
+[ext_resource type="Script" uid="uid://2l0erlkxfu0u" path="res://components/renderer/wallRenderer/wall_renderer.gd" id="1_1hf8p"]
+
+[node name="WallRenderer" type="Control" unique_id=1004369028]
+layout_mode = 3
+anchor_right = 0.43400002
+anchor_bottom = 0.772
+offset_right = 0.031982422
+offset_bottom = -0.25601196
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1hf8p")
+
+[node name="left" type="ColorRect" parent="." unique_id=138556317]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.1
+anchor_bottom = 1.0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="right" type="ColorRect" parent="." unique_id=1763554992]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.90000004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0517578e-05
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="up" type="ColorRect" parent="." unique_id=1186657441]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="down" type="ColorRect" parent="." unique_id=554295714]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.90000004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)

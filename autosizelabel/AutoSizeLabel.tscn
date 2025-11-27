@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cque55d8h316u"]
+
+[ext_resource type="Script" uid="uid://c7pi8at5ii0ag" path="res://autosizelabel/auto_size_label.gd" id="1_qi0ci"]
+
+[node name="AutoSizeLabel" type="Label" unique_id=700345016]
+script = ExtResource("1_qi0ci")

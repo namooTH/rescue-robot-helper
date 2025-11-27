@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyqhrd3tnx6na"]
+
+[ext_resource type="Script" uid="uid://27lt2oiu820n" path="res://components/tile/tile.gd" id="1_377ml"]
+[ext_resource type="PackedScene" uid="uid://c1ifm0533k3s6" path="res://components/renderer/wallRenderer/wallRenderer.tscn" id="2_p0e82"]
+[ext_resource type="PackedScene" uid="uid://c5ts6atrk07ww" path="res://components/renderer/diceRenderer/diceRenderer.tscn" id="3_25uel"]
+[ext_resource type="PackedScene" uid="uid://cja76scwpaauk" path="res://components/renderer/obstacleRenderer/obstacleRenderer.tscn" id="4_pvsfi"]
+[ext_resource type="PackedScene" uid="uid://ckhb5xdie8vfa" path="res://components/renderer/extraRenderer/extraRenderer.tscn" id="5_sex60"]
+[ext_resource type="PackedScene" uid="uid://dym3vf8leeigf" path="res://components/renderer/heightRenderer/heightRenderer.tscn" id="6_jf5pb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_377ml"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.32544085, 0.32544094, 0.32544068, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_377ml"]
+
+[node name="Tile" type="Panel" unique_id=319813775]
+offset_right = 500.0
+offset_bottom = 500.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_377ml")
+script = ExtResource("1_377ml")
+
+[node name="DiceRenderer" parent="." unique_id=2093181616 instance=ExtResource("3_25uel")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="ObstacleRenderer" parent="." unique_id=1142293199 instance=ExtResource("4_pvsfi")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="ExtraRenderer" parent="." unique_id=1977307265 instance=ExtResource("5_sex60")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="WallRenderer" parent="." unique_id=1004369028 instance=ExtResource("2_p0e82")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="HeightRenderer" parent="." unique_id=1554011784 instance=ExtResource("6_jf5pb")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Button" type="Button" parent="." unique_id=138173776]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_377ml")

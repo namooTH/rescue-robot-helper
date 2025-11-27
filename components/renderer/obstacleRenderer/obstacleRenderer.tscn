@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://cja76scwpaauk"]
+
+[ext_resource type="Script" uid="uid://w3jm1meogss4" path="res://components/renderer/obstacleRenderer/obstacle_renderer.gd" id="1_hr8sn"]
+[ext_resource type="Script" uid="uid://nceex6y2gndf" path="res://components/renderer/obstacleRenderer/chopstick_h.gd" id="2_un4sm"]
+[ext_resource type="Script" uid="uid://wmpliopxp5ar" path="res://components/renderer/obstacleRenderer/chopstick_v.gd" id="3_u6g8i"]
+
+[node name="ObstacleRenderer" type="Control" unique_id=1004369028]
+layout_mode = 3
+anchor_right = 0.43400002
+anchor_bottom = 0.772
+offset_right = 0.031982422
+offset_bottom = -0.25601196
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_hr8sn")
+
+[node name="barH" type="ColorRect" parent="." unique_id=1961179952]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="barV" type="ColorRect" parent="." unique_id=396120228]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_right = 0.85
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="down" type="ColorRect" parent="." unique_id=1509734547]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="chopstickH" type="Control" parent="." unique_id=1755791832]
+visible = false
+layout_mode = 1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.90000004
+offset_bottom = -3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_un4sm")
+
+[node name="chopstickV" type="Control" parent="." unique_id=908251932]
+visible = false
+layout_mode = 1
+anchor_left = 0.1
+anchor_right = 0.90000004
+anchor_bottom = 1.0
+offset_right = -3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_u6g8i")

@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckhb5xdie8vfa"]
+
+[ext_resource type="Script" uid="uid://dsbvxx7d7sey" path="res://components/renderer/extraRenderer/extra_renderer.gd" id="1_vlh01"]
+[ext_resource type="Script" uid="uid://c7pi8at5ii0ag" path="res://autosizelabel/auto_size_label.gd" id="2_og7n8"]
+
+[sub_resource type="Gradient" id="Gradient_m6nkg"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.69871795)
+colors = PackedColorArray(0.9243518, 0.83840424, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_og7n8"]
+gradient = SubResource("Gradient_m6nkg")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="ExtraRenderer" type="Control" unique_id=1004369028]
+layout_mode = 3
+anchor_right = 0.43400002
+anchor_bottom = 0.772
+offset_right = 0.031982422
+offset_bottom = -0.25601196
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_vlh01")
+
+[node name="point" type="TextureRect" parent="." unique_id=1742951971]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39000002
+anchor_top = 0.39000002
+anchor_right = 0.61
+anchor_bottom = 0.61
+offset_left = -1.5258789e-05
+offset_top = -1.5258789e-05
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_og7n8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="start_stop" type="ColorRect" parent="." unique_id=260767481]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="start_stop" unique_id=224975591]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.066
+anchor_top = 0.28
+anchor_right = 0.934
+anchor_bottom = 0.72
+offset_left = -0.087999344
+offset_top = -0.040000916
+offset_right = 0.08798218
+offset_bottom = 0.039993286
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "START"
+horizontal_alignment = 1
+clip_text = true
+script = ExtResource("2_og7n8")
+max_font_size = 96
+metadata/_custom_type_script = "uid://c7pi8at5ii0ag"

@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://d04c1doqyik7e"]
+
+[ext_resource type="Script" uid="uid://o3j1f22byu6u" path="res://components/inspector/inspector.gd" id="1_88v2s"]
+
+[node name="Inspector" type="Panel" unique_id=499960736]
+anchors_preset = -1
+anchor_right = 0.277
+anchor_bottom = 0.84400004
+offset_right = -0.104003906
+offset_bottom = 0.08795166
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_88v2s")
+
+[node name="Label" type="Label" parent="." unique_id=1152216810]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.5
+offset_top = 3.0
+offset_right = 36.5
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Inspector"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=802065309]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.082
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.14599991
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabBar" type="TabBar" parent="VSplitContainer" unique_id=129918774]
+layout_mode = 2
+current_tab = 0
+close_with_middle_mouse = false
+tab_count = 5
+tab_0/title = "Height"
+tab_1/title = "Wall"
+tab_2/title = "Dice"
+tab_3/title = "Obstacles"
+tab_4/title = "Extras"
+
+[node name="SettingContainer" type="Control" parent="VSplitContainer" unique_id=2113124729]
+layout_mode = 2
