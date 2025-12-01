@@ -172,7 +172,6 @@ popup/item_2/text = "Save"
 popup/item_2/id = 2
 
 [node name="Editor" type="Panel" parent="MarginContainer/HFlowContainer" unique_id=172245420]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -207,6 +206,7 @@ layout_mode = 2
 tile_size = Vector2(8, 4)
 
 [node name="Code" type="Panel" parent="MarginContainer/HFlowContainer" unique_id=750100578]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
