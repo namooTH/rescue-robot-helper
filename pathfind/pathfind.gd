@@ -95,16 +95,15 @@ func reconstruct_path(came_from, current):
 	return path
 
 func astar(start: Vector2i, goal: Vector2i) -> Array:
-	var open = []
-	open.append({"pos": start, "f": 0})
+	var pq = priority_queue.new(func(a, b): return a["f"] > b["f"])
+	pq.push({"pos": start, "f": 0})
 
 	var came_from = {}
 	var g_score = {start: 0}
 
-	while open.size() > 0:
-		open.sort_custom(func(a, b): return a["f"] < b["f"])
-		var current = open[0]["pos"]
-		open.pop_front()
+	while !pq.empty():
+		var current = pq.top()["pos"]
+		pq.pop();
 
 		if current == goal:
 			return reconstruct_path(came_from, current)
@@ -126,7 +125,7 @@ func astar(start: Vector2i, goal: Vector2i) -> Array:
 				if not g_score.has(n) or tentative < g_score[n]:
 					g_score[n] = tentative
 					var f = tentative + heuristic(n, goal)
-					open.append({"pos": n, "f": f})
+					pq.push({"pos": n, "f": f})
 					came_from[n] = current
 
 	return []
