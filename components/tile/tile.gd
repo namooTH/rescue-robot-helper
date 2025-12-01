@@ -1,4 +1,5 @@
 extends Panel
+class_name Tile
 
 @export var height: Height = Height.new()
 @export var wall: Wall = Wall.new()

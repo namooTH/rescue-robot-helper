@@ -1,4 +1,5 @@
 extends Control
+class_name TileContainer
 
 @export var tile_size: Vector2 = Vector2(24, 24):
 	set(size):
