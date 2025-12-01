@@ -1,7 +1,6 @@
 ## A C++-style priority_queue implementation with support for custom comparators.
 ##
 ## To create a min-heap, provide a comparator that returns true when the first element is greater than the second, and vice versa.
-extends Node
 class_name priority_queue
 
 var _Heap :Array = [];
