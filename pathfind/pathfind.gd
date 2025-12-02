@@ -1,87 +1,94 @@
 extends Node
 @onready var tile_container = $"../MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer/AspectRatioContainer/TileContainer"
 
+enum IsMovable {
+	No = 0,
+	Yes = 1,
+	Maybe = 2
+}
+
 func check_height_move(A, B, direction: Height.Direction, direction_op: Height.Direction):
 	if A.height.surface == Height.Surface.above and B.height.surface == Height.Surface.ground:
 		if A.height.direction == direction_op:
-			return true
-		return false
+			return IsMovable.Yes
+		return IsMovable.No
 	elif A.height.surface == Height.Surface.ground and B.height.surface == Height.Surface.above:
 		if B.height.direction == direction:
-			return true
-		return false
+			return IsMovable.Yes
+		return IsMovable.No
 	elif A.height.surface == Height.Surface.ground and B.height.surface == Height.Surface.ground:
 		return null
 	else:
 		if B.height.direction in [Height.Direction.none, direction_op]:
-			return true
+			return IsMovable.Yes
 		if A.height.direction == direction_op:
-			return true
-		return false
-	
-func can_move(x: int, y: int, nx: int, ny: int) -> bool:
+			return IsMovable.Yes
+		return IsMovable.No
+
+func can_move(x: int, y: int, nx: int, ny: int) -> IsMovable:
 	var A = tile_container.get_tile(x, y)
 	var B = tile_container.get_tile(nx, ny)
 
 	if A == null or B == null:
-		return false
-	
-	if B.obstacle.type == Obstacle.Type.bar:
-		return false
+		return IsMovable.No
 
 	# right (x + 1, y)
 	if nx == x + 1 and ny == y:
 		if A.wall.right:
-			return false
+			return IsMovable.No
 		if B.wall.left:
-			return false
+			return IsMovable.No
 		
 		var can_height_move = check_height_move(A, B, Height.Direction.right, Height.Direction.left)
 		if can_height_move != null:
 			return can_height_move
 		
-		return true
+		return IsMovable.Yes
 
 	# left (x - 1, y)
 	if nx == x - 1 and ny == y:
 		if A.wall.left:
-			return false
+			return IsMovable.No
 		if B.wall.right:
-			return false
+			return IsMovable.No
 			
 		var can_height_move = check_height_move(A, B, Height.Direction.left, Height.Direction.right)
 		if can_height_move != null:
 			return can_height_move
 		
-		return true
+		return IsMovable.Yes
 
 	# down (x, y + 1)
 	if nx == x and ny == y + 1:
 		if A.wall.down:
-			return false
+			return IsMovable.No
 		if B.wall.up:
-			return false
+			return IsMovable.No
 
 		var can_height_move = check_height_move(A, B, Height.Direction.down, Height.Direction.up)
 		if can_height_move != null:
 			return can_height_move
 
-		return true
+		return IsMovable.Yes
 
 	# up (x, y - 1)
 	if nx == x and ny == y - 1:
 		if A.wall.up:
-			return false
+			return IsMovable.No
 		if B.wall.down:
-			return false
+			return IsMovable.No
 
 		var can_height_move = check_height_move(A, B, Height.Direction.up, Height.Direction.down)
 		if can_height_move != null:
 			return can_height_move
 
-		return true
+		return IsMovable.Yes
 
-	return false
+	if B.obstacle.type == Obstacle.Type.bar:
+		return IsMovable.Maybe
+
+
+	return IsMovable.No
 
 func heuristic(a: Vector2i, b: Vector2i) -> int:
 	return abs(a.x - b.x) + abs(a.y - b.y)
@@ -117,9 +124,28 @@ func astar(start: Vector2i, goal: Vector2i) -> Array:
 			Vector2i(x, y + 1),
 			Vector2i(x, y - 1)
 		]
-
+		var movables: Array[IsMovable] = []
+		
 		for n in neighbors:
-			if can_move(x, y, n.x, n.y):
+			movables.append(can_move(x, y, n.x, n.y))
+		
+		# this will check if there are less than 2 possible
+		# normal moves.
+		# if there are, it will try to move to the
+		# most unlikely path which are flagged with IsMovable.Maybe
+		#
+		# this is used when theres no where to go in the path.
+		
+		var only_way_to_move: bool = (IsMovable.Maybe in movables and len(movables.filter(func(n): return n == IsMovable.Yes)) <= 1)
+			
+		for ninx in range(len(neighbors)):
+			var n: Vector2i = neighbors[ninx]
+			var m: IsMovable = movables[ninx]
+			
+			if not only_way_to_move and m == IsMovable.Maybe:
+				continue
+
+			if movables[ninx] != IsMovable.No:
 				var tentative = g_score[current] + 1
 
 				if not g_score.has(n) or tentative < g_score[n]:
