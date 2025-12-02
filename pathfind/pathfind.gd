@@ -1,5 +1,5 @@
 extends Node
-@onready var tile_container = $"../MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer/AspectRatioContainer/TileContainer"
+@export var tile_container: TileContainer
 
 enum IsMovable {
 	No = 0,
