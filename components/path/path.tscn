@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://slipkvule6iy"]
+
+[ext_resource type="Script" uid="uid://bw3fvmxqntn8q" path="res://components/path/path.gd" id="1_i3gec"]
+
+[sub_resource type="Curve2D" id="Curve2D_i3gec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aostg"]
+bg_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3gec"]
+bg_color = Color(0.31431612, 0.31431612, 0.3143161, 1)
+corner_radius_top_left = 99999
+corner_radius_top_right = 99999
+corner_radius_bottom_right = 99999
+corner_radius_bottom_left = 99999
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3gec"]
+
+[node name="Path" type="Control" unique_id=1774819960]
+modulate = Color(1, 1, 1, 0.49803922)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_i3gec")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=416675183]
+curve = SubResource("Curve2D_i3gec")
+
+[node name="Line2D" type="Line2D" parent="Path2D" unique_id=1035877254]
+default_color = Color(0, 0, 0, 1)
+
+[node name="head" type="Button" parent="." unique_id=30209439]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.030000001
+anchor_bottom = 0.054
+offset_right = 0.43999863
+offset_bottom = 0.00799942
+theme_override_styles/normal = SubResource("StyleBoxFlat_aostg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i3gec")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aostg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i3gec")
+keep_pressed_outside = true
+
+[node name="tail" type="Button" parent="." unique_id=530997318]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.030000001
+anchor_bottom = 0.054
+offset_right = 0.43999863
+offset_bottom = 0.00799942
+theme_override_styles/normal = SubResource("StyleBoxFlat_aostg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i3gec")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aostg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i3gec")
+keep_pressed_outside = true

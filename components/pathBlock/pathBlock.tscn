@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvter7mygpxt2"]
+
+[ext_resource type="Script" uid="uid://c7pi8at5ii0ag" path="res://autosizelabel/auto_size_label.gd" id="1_hk625"]
+
+[node name="PathBlock" type="Panel" unique_id=962397319]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="." unique_id=556315351]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.275
+offset_bottom = -0.19999695
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 92
+text = "Action"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("1_hk625")
+max_font_size = 92
+metadata/_custom_type_script = "uid://c7pi8at5ii0ag"

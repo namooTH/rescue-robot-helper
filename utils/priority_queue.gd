@@ -40,6 +40,7 @@ func empty():
 func _fix_up(i: int) -> void:
 	var tmp = _Heap[i];
 	while i>0:
+		@warning_ignore("integer_division")
 		var parent := (i-1)/2;
 		if (_cmp.call(tmp, _Heap[parent])):
 			break;

@@ -14,9 +14,21 @@ func tab_selected(tab: int):
 	match tab:
 		0:
 			$MarginContainer/HFlowContainer/Editor.show()
+			$MarginContainer/HFlowContainer/Actions.hide()
 			$MarginContainer/HFlowContainer/Code.hide()
+			var tc = get_node_or_null("MarginContainer/HFlowContainer/Actions/HSplitContainer/AspectRatioContainer")
+			if tc:
+				tc.reparent($MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer)
 		1:
 			$MarginContainer/HFlowContainer/Editor.hide()
+			$MarginContainer/HFlowContainer/Actions.show()
+			$MarginContainer/HFlowContainer/Code.hide()
+			var tc = get_node_or_null("MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer/AspectRatioContainer")
+			if tc:
+				tc.reparent($MarginContainer/HFlowContainer/Actions/HSplitContainer)
+		2:
+			$MarginContainer/HFlowContainer/Editor.hide()
+			$MarginContainer/HFlowContainer/Actions.hide()
 			$MarginContainer/HFlowContainer/Code.show()
 	
 func menu_button_pressed(id: int):
@@ -24,7 +36,7 @@ func menu_button_pressed(id: int):
 		0:
 			tile_container.reset()
 			current_file = null
-			update_path()
+			update()
 		1:
 			var vaild_id = randi()
 			$FileDialog.set_meta("vaild_id", vaild_id)
@@ -51,7 +63,8 @@ func load_file(path: String):
 	tile_container.connect("updated", updated)
 	is_saved = true
 	current_file = path
-	update_path()
+
+	update()
 
 func save_file():
 	var path
@@ -71,7 +84,7 @@ func save_file():
 	ResourceSaver.save(tile_container.save(), path)
 	current_file = path
 	is_saved = true
-	update_path()
+	update()
 
 func update_path():
 	if current_file:
@@ -86,4 +99,7 @@ func update_path():
 
 func updated(_tile):
 	is_saved = false
+
+func update():
 	update_path()
+	$pathfind.update_actions()

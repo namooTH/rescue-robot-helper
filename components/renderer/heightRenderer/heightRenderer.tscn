@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dym3vf8leeigf"]
 
 [ext_resource type="Script" uid="uid://dgh3sa82rp4sj" path="res://components/renderer/heightRenderer/height_renderer.gd" id="1_pg5tw"]
-[ext_resource type="Shader" uid="uid://dnxw3byrt13tf" path="res://pixelate.gdshader" id="2_jo8pj"]
+[ext_resource type="Shader" uid="uid://dnxw3byrt13tf" path="res://shaders/pixelate.gdshader" id="2_jo8pj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6wt74"]
 shader = ExtResource("2_jo8pj")

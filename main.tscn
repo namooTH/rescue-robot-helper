@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwo04no3sfmjk"]
+[gd_scene load_steps=13 format=3 uid="uid://bwo04no3sfmjk"]
 
 [ext_resource type="Script" uid="uid://4tsjceri85kh" path="res://main.gd" id="1_7mycd"]
-[ext_resource type="Shader" uid="uid://kokvsds3rh1l" path="res://background.gdshader" id="1_h2yge"]
+[ext_resource type="Shader" uid="uid://kokvsds3rh1l" path="res://shaders/background.gdshader" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dj2n6t2yrhjsr" path="res://components/tilesContainer/tileContainer.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://b3ps8bf0kyasv" path="res://pathfind/pathfind.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://d04c1doqyik7e" path="res://components/inspector/inspector.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://3gc1ia5rgns5" path="res://components/pathContainer/pathContainer.tscn" id="6_7mycd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
 shader = ExtResource("1_h2yge")
@@ -61,9 +62,10 @@ access = 2
 filters = PackedStringArray("*.res")
 use_native_dialog = true
 
-[node name="pathfind" type="Node" parent="." unique_id=401111541 node_paths=PackedStringArray("tile_container")]
+[node name="pathfind" type="Node" parent="." unique_id=401111541 node_paths=PackedStringArray("tile_container", "path_container")]
 script = ExtResource("1_lquwl")
 tile_container = NodePath("../MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer/AspectRatioContainer/TileContainer")
+path_container = NodePath("../MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer/AspectRatioContainer/PathContainer")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=210925173]
 top_level = true
@@ -141,9 +143,10 @@ theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_5vw27")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_272bh")
 current_tab = 0
 tab_alignment = 1
-tab_count = 2
+tab_count = 3
 tab_0/title = "Editor"
-tab_1/title = "Code"
+tab_1/title = "Actions"
+tab_2/title = "Code"
 
 [node name="Panel" type="Panel" parent="MarginContainer/HFlowContainer/MenuBar/MarginContainer/HBoxContainer/TabBar" unique_id=1335890127]
 show_behind_parent = true
@@ -189,7 +192,6 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HFlowContainer/Editor/MarginContainer" unique_id=1572150788]
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -202,9 +204,13 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="TileContainer" parent="MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer/AspectRatioContainer" unique_id=545364260 instance=ExtResource("1_ig7tw")]
+[node name="TileContainer" parent="MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer/AspectRatioContainer" unique_id=1208655013 instance=ExtResource("1_ig7tw")]
 layout_mode = 2
 tile_size = Vector2(8, 4)
+
+[node name="PathContainer" parent="MarginContainer/HFlowContainer/Editor/MarginContainer/HSplitContainer/AspectRatioContainer" unique_id=349168816 node_paths=PackedStringArray("tile_container") instance=ExtResource("6_7mycd")]
+layout_mode = 2
+tile_container = NodePath("../TileContainer")
 
 [node name="Code" type="Panel" parent="MarginContainer/HFlowContainer" unique_id=750100578]
 visible = false
@@ -228,21 +234,63 @@ layout_mode = 2
 editable = false
 minimap_draw = true
 
-[node name="Button" type="Button" parent="." unique_id=879719989]
-layout_mode = 0
-offset_left = 771.0
-offset_top = 65.0
-offset_right = 923.0
-offset_bottom = 159.0
-text = "pathfind"
+[node name="Actions" type="Panel" parent="MarginContainer/HFlowContainer" unique_id=178921042]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Button2" type="Button" parent="." unique_id=2019626333]
-layout_mode = 0
-offset_left = 939.0
-offset_top = 66.0
-offset_right = 1091.0
-offset_bottom = 160.0
-text = "update"
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HFlowContainer/Actions" unique_id=1574515353]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[connection signal="pressed" from="Button" to="pathfind" method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="pathfind" method="_on_button_2_pressed"]
+[node name="Step" type="Panel" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer" unique_id=1729162891]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step" unique_id=2037487895]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step/ScrollContainer" unique_id=1017952727]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step/ScrollContainer/VBoxContainer" unique_id=672950446]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step/ScrollContainer/VBoxContainer" unique_id=1562710892]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step/ScrollContainer/VBoxContainer" unique_id=903034225]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step/ScrollContainer/VBoxContainer" unique_id=82808963]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step/ScrollContainer/VBoxContainer" unique_id=1125117861]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step/ScrollContainer/VBoxContainer" unique_id=1576839181]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step/ScrollContainer/VBoxContainer" unique_id=1038361884]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="ColorRect8" type="ColorRect" parent="MarginContainer/HFlowContainer/Actions/HSplitContainer/Step/ScrollContainer/VBoxContainer" unique_id=797319568]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
